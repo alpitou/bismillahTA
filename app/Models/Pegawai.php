@@ -19,6 +19,8 @@ class Pegawai extends Model
         'jabatan',
         'email',
         'alamat',
+        'username', // Tambahkan username di sini
+        'role',     // Tambahkan role di sini
     ];
 
     /**

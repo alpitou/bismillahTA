@@ -22,7 +22,6 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Jabatan</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Alamat</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -33,7 +32,6 @@
                         <td>{{ $pegawai->nama }}</td>
                         <td>{{ $pegawai->jabatan }}</td>
                         <td>{{ $pegawai->email }}</td>
-                        <td>{{ $pegawai->alamat }}</td>
                         <td>
                             <a href="{{ route('pegawai.show', $pegawai->id) }}" class="btn btn-sm btn-primary">Detail</a>
                             <a href="{{ route('pegawai.edit', $pegawai->id) }}" class="btn btn-sm btn-warning">Edit</a>
