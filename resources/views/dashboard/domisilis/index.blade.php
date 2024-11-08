@@ -35,7 +35,7 @@
                     <thead>
                         <tr class="text-dark">
                             <th scope="col">No Surat</th>
-                            <th scope="col">Nama Warga</th>
+                            <th scope="col">Nama Pegawai</th>
                             <th scope="col">Tanggal Surat</th>
                             <th scope="col">Action</th>
                         </tr>

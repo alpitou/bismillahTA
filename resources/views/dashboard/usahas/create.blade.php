@@ -6,7 +6,7 @@
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Buat Surat Keterangan Usaha</h6>
-                    <form method="post" action="/dashboard/domisili">
+                    <form method="post" action="/dashboard/usaha">
                         @csrf
                         <div class="mb-3">
                             <label for="kodeSurat" class="form-label">Kode Surat</label>

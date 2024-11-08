@@ -38,7 +38,6 @@ Route::controller(RegisterController::class)->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 // Route::get('/dashboard/cetak_pdf', [DashboardController::class, 'cetak_pdf'])->middleware('auth');
-
 Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index'); Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create'); Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store'); Route::get('/pegawai/{id}', [PegawaiController::class, 'show'])->name('pegawai.show'); Route::get('/pegawai/{id}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit'); Route::put('/pegawai/{id}', [PegawaiController::class, 'update'])->name('pegawai.update'); Route::delete('/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
 
 Route::get('/dashboard/domisili/{domisili:noSurat}/cetak', [DashboardDomController::class, 'cetak'])->middleware('auth');
