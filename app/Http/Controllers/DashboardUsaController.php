@@ -139,6 +139,7 @@ class DashboardUsaController extends Controller
 
     public function cetak(Usaha $usaha)
     {
+        set_time_limit(120);
         $pdf = PDF::loadview('dashboard.usahas.cetak', [
             'title' => 'Cetak',
             'usaha' => $usaha,

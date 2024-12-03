@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Domisili;
 use Illuminate\Http\Request;
+use Log;
 use PDF;
 
 class DashboardDomController extends Controller
@@ -15,20 +16,26 @@ class DashboardDomController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        // $user = auth()->user();
 
-        if ($user->hasRole(['Inspektur', 'Ketua Tim'])) {
-            // Jika pengguna adalah Inspektur atau Ketua Tim, tampilkan semua surat
-            $domisilis = Domisili::latest()->paginate(8);
-        } else {
-            // Jika pengguna adalah Pegawai, hanya tampilkan surat yang dibuat oleh dirinya
-            $domisilis = Domisili::where('id', $user->id)->latest()->paginate(8);
-        }
+        // if ($user->hasRole(['Inspektur', 'Ketua Tim'])) {
+        //     // Jika pengguna adalah Inspektur atau Ketua Tim, tampilkan semua surat
+        //     $domisilis = Domisili::latest()->paginate(8);
+        // } else {
+        //     // Jika pengguna adalah Pegawai, hanya tampilkan surat yang dibuat oleh dirinya
+        //     $domisilis = Domisili::where('id', $user->id)->latest()->paginate(8);
+        // }
+
+        // return view('dashboard.domisilis.index', [
+        //     'title' => 'Domisili',
+        //     'domisilis' => $domisilis,
+        //     'totalDomisili' => $domisilis->total(), // Sesuai dengan data yang difilter
+        // ]);
 
         return view('dashboard.domisilis.index', [
             'title' => 'Domisili',
-            'domisilis' => $domisilis,
-            'totalDomisili' => $domisilis->total(), // Sesuai dengan data yang difilter
+            'domisilis' => Domisili::latest()->paginate(8),
+            'totalDomisili' => Domisili::count(),
         ]);
     }
 
@@ -156,14 +163,39 @@ class DashboardDomController extends Controller
 
     public function cetak(Domisili $domisili)
     {
+        // Authorize access to the Domisili resource
         $this->authorizeAccess($domisili);
-
-        $pdf = PDF::loadview('dashboard.domisilis.cetak', [
-            'title' => 'Cetak',
-            'domisili' => $domisili,
-        ])->setPaper('a4', 'potrait');
-        return $pdf->stream('Domisili_' . $domisili->noSurat . '.pdf');
+    
+        try {
+            // Log the start of PDF generation
+            Log::info('PDF generation initiated for Domisili No: ' . $domisili->noSurat);
+            
+            set_time_limit(120);
+            // Generate PDF
+            $pdf = PDF::loadView('dashboard.domisilis.cetak', [
+                'title' => 'Cetak',
+                'domisili' => $domisili,
+            ])
+            ->setPaper('a4', 'portrait'); // Set paper size and orientation
+    
+            // Log successful PDF generation
+            Log::info('PDF generation completed successfully for Domisili No: ' . $domisili->noSurat);
+    
+            // Stream the generated PDF to the browser
+            return $pdf->stream('Domisili_' . $domisili->noSurat . '.pdf');
+        } catch (\Exception $e) {
+            // Log any errors that occur
+            Log::error('Error generating PDF for Domisili No: ' . $domisili->noSurat, [
+                'error' => $e->getMessage(),
+            ]);
+    
+            // Handle error (return a friendly message or fallback behavior)
+            return back()->with('error', 'Terjadi kesalahan saat mencetak surat.');
+        }
     }
+    
+    
+    
 
     /**
      * Authorize access for specific roles.
