@@ -15,12 +15,22 @@ class DashboardUsaController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        
+        $usahas = Usaha::when($user->hasRole(['Inspektur', 'Ketua Tim']), function ($query) {
+            return $query->latest();
+        }, function ($query) use ($user) {
+            // Tampilkan surat milik pengguna biasa
+            return $query->where('user_id', $user->id)->latest();
+        })->paginate(8);
+
         return view('dashboard.usahas.index', [
             'title' => 'Usaha',
-            'usahas' => Usaha::latest()->paginate(8),
-            'totalUsaha' => Usaha::count(),
+            'usahas' => $usahas,
+            'totalUsaha' => $usahas->total(),
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -146,4 +156,13 @@ class DashboardUsaController extends Controller
         ])->setPaper('a4', 'potrait');
         return $pdf->stream('Usaha_' . $usaha->noSurat . '.pdf');
     }
+
+    private function authorizeAccess(Usaha $usaha)
+{
+    $user = auth()->user();
+
+    if ($user->hasRole('Pegawai') && $usaha->user_id !== $user->id) {
+        abort(403, 'Anda tidak memiliki akses untuk melihat surat ini. Harap hubungi admin jika Anda memerlukan akses.');
+    }
+}
 }

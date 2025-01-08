@@ -15,29 +15,24 @@ class DashboardDomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // $user = auth()->user();
+{
+    $user = auth()->user();
 
-        // if ($user->hasRole(['Inspektur', 'Ketua Tim'])) {
-        //     // Jika pengguna adalah Inspektur atau Ketua Tim, tampilkan semua surat
-        //     $domisilis = Domisili::latest()->paginate(8);
-        // } else {
-        //     // Jika pengguna adalah Pegawai, hanya tampilkan surat yang dibuat oleh dirinya
-        //     $domisilis = Domisili::where('id', $user->id)->latest()->paginate(8);
-        // }
+    // Tampilkan semua surat untuk Inspektur atau Ketua Tim
+    $domisilis = Domisili::when($user->hasRole(['Inspektur', 'Ketua Tim']), function ($query) {
+        return $query->latest();
+    }, function ($query) use ($user) {
+        // Tampilkan surat milik pengguna biasa
+        return $query->where('user_id', $user->id)->latest();
+    })->paginate(8);
 
-        // return view('dashboard.domisilis.index', [
-        //     'title' => 'Domisili',
-        //     'domisilis' => $domisilis,
-        //     'totalDomisili' => $domisilis->total(), // Sesuai dengan data yang difilter
-        // ]);
+    return view('dashboard.domisilis.index', [
+        'title' => 'Domisili',
+        'domisilis' => $domisilis,
+        'totalDomisili' => $domisilis->total(),
+    ]);
+}
 
-        return view('dashboard.domisilis.index', [
-            'title' => 'Domisili',
-            'domisilis' => Domisili::latest()->paginate(8),
-            'totalDomisili' => Domisili::count(),
-        ]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -204,11 +199,11 @@ class DashboardDomController extends Controller
      * @return void
      */
     private function authorizeAccess(Domisili $domisili)
-    {
-        $user = auth()->user();
+{
+    $user = auth()->user();
 
-        if ($user->hasRole('Pegawai') && $domisili->user_id !== $user->id) {
-            abort(403, 'Anda tidak memiliki akses ke surat ini.');
-        }
+    if ($user->hasRole('Pegawai') && $domisili->user_id !== $user->id) {
+        abort(403, 'Anda tidak memiliki akses untuk melihat surat ini. Harap hubungi admin jika Anda memerlukan akses.');
     }
+}
 }

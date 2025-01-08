@@ -15,4 +15,10 @@ class Usaha extends Model
     {
         return 'noSurat';
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

@@ -13,9 +13,28 @@ class UsahaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     //
+    // }
+
     public function index()
     {
-        //
+        // Ambil data dengan pagination
+        $usahas = Usaha::latest()->paginate(8);
+
+        // Hitung total usaha
+        $totalUsaha = Usaha::count();
+
+        // Kembalikan response dalam format JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'List of Usahas',
+            'data' => [
+                'usahas' => $usahas,
+                'totalUsaha' => $totalUsaha
+            ]
+        ]);
     }
 
     /**
