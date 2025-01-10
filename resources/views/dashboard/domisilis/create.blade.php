@@ -5,7 +5,7 @@
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Buat Surat Keterangan Domisili</h6>
+                    <h6 class="mb-4">Buat Surat Izin</h6>
                     <form method="post" action="/dashboard/domisili">
                         @csrf
                         <div class="mb-3">
@@ -27,7 +27,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Warga</label>
+                            <label for="nama" class="form-label">Nama Pegawai</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Pemohon" required value="{{ old('nama') }}">
                             @error('nama')
                                 <div class="invalid-feedback">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="ttd" class="form-label">Yang Menandatangai</label>
-                            <input type="text" class="form-control @error('ttd') is-invalid @enderror" id="ttd" name="ttd" placeholder="Keuchik/Sekdes" required value="{{ old('ttd') }}">
+                            <input type="text" class="form-control @error('ttd') is-invalid @enderror" id="ttd" name="ttd" placeholder="Inspektur" required value="{{ old('ttd') }}">
                             @error('ttd')
                                 <div class="invalid-feedback">
                                     {{ $message }}

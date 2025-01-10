@@ -8,7 +8,7 @@
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-chart-line fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total Surat Keterangan Domisili</p>
+                        <p class="mb-2">Total Surat Jalan</p>
                         <h6 class="mb-0">{{ $totalDomisili }}</h6>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                 </div>
             @endif
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Daftar Surat Keterangan Domisi</h6>
+                <h6 class="mb-0">Daftar Surat Jalan</h6>
                 <a href="/dashboard/domisili/create" class="btn btn-primary">Tambah Surat</a>
             </div>
             <div class="table-responsive">

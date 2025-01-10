@@ -8,7 +8,7 @@
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-chart-bar fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total Surat Keterangan Usaha</p>
+                        <p class="mb-2">Total Surat Izin</p>
                         <h6 class="mb-0">{{ $totalUsaha }}</h6>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                 </div>
             @endif
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Daftar Surat Keterangan Usaha</h6>
+                <h6 class="mb-0">Daftar Surat Izin</h6>
                 <a href="/dashboard/usaha/create" class="btn btn-primary">Tambah Surat</a>
             </div>
             <div class="table-responsive">
@@ -35,7 +35,7 @@
                     <thead>
                         <tr class="text-dark">
                             <th scope="col">No Surat</th>
-                            <th scope="col">Nama Warga</th>
+                            <th scope="col">Nama Pegawai</th>
                             <th scope="col">Tanggal Surat</th>
                             <th scope="col">Action</th>
                         </tr>

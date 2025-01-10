@@ -24,9 +24,9 @@
                     <i class="far fa-file-alt me-2"></i>Surat</a>
                 <div class="dropdown-menu bg-transparent border-0">
                         <a href="/dashboard/domisili" class="dropdown-item {{ Request::is('dashboard/domisili*') ? 'active' : '' }}">
-                        <i class="bi bi-house"></i> Ket Domisili</a>
+                        <i class="bi bi-house"></i> Ket Surat Jalan</a>
                         <a href="/dashboard/usaha" class="dropdown-item {{ Request::is('dashboard/usaha*') ? 'active' : '' }}">
-                        <i class="bi bi-shop-window"></i> Ket Usaha</a>
+                        <i class="bi bi-shop-window"></i> Ket Surat Izin</a>
                 </div>
                     @if(auth()->user()->hasRole('Inspektur'))
                         <a href="/pegawai" class="nav-item nav-link {{ Request::is('pegawai') ? 'active' : '' }}">
