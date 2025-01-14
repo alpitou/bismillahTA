@@ -28,10 +28,10 @@
                         <a href="/dashboard/usaha" class="dropdown-item {{ Request::is('dashboard/usaha*') ? 'active' : '' }}">
                         <i class="bi bi-shop-window"></i> Ket Surat Izin</a>
                 </div>
-                    @if(auth()->user()->hasRole('Inspektur'))
-                        <a href="/pegawai" class="nav-item nav-link {{ Request::is('pegawai') ? 'active' : '' }}">
-                        <i class="fa fa-tachometer-alt me-2"></i>Pegawai</a>
-                    @endif
+                @if(auth()->user() && auth()->user()->role === 'Inspektur')
+                    <a href="/pegawai" class="nav-item nav-link {{ Request::is('pegawai') ? 'active' : '' }}">
+                    <i class="fa fa-tachometer-alt me-2"></i>Pegawai</a>
+                @endif
             </div>
         </div>
     </nav>

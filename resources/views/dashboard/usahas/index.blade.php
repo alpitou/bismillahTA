@@ -48,13 +48,15 @@
                             <td>{{ date('d M Y', strtotime($usaha->tglSurat)) }}</td>
                             <td>
                                 <a class="btn btn-sm btn-primary" href="/dashboard/usaha/{{ $usaha->noSurat }}">Detail</a>
+                                @if(auth()->user() && auth()->user()->role === 'Inspektur')
                                 <a class="btn btn-sm btn-warning" href="/dashboard/usaha/{{ $usaha->noSurat }}/edit">Edit</a>
                                 <form action="/dashboard/usaha/{{ $usaha->noSurat }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf 
-                                    <button class="btn btn-sm btn-danger border-0" onclick="return confirm('Kilik Oke Untuk Menghapus')">Hapus</button>
+                                    <button class="btn btn-sm btn-danger border-0" onclick="return confirm('Klik Oke Untuk Menghapus')">Hapus</button>
                                 </form>
                                 <a class="btn btn-sm btn-success" href="/dashboard/usaha/{{ $usaha->noSurat }}/cetak">Cetak</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

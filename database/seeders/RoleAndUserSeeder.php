@@ -55,6 +55,7 @@ class RoleAndUserSeeder extends Seeder
                     'name' => $userData['name'],
                     'username' => $userData['username'],
                     'password' => $userData['password'],
+                    'role' => $userData['role'],
                 ]
             );
 

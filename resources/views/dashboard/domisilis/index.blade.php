@@ -48,17 +48,17 @@
                             <td>{{ date('d M Y', strtotime($domisili->tglSurat)) }}</td>
                             <td>
                                 <a class="btn btn-sm btn-primary" href="/dashboard/domisili/{{ $domisili->noSurat }}">Detail</a>
-                                @if(auth()->user()->hasRole('Inspektur'))
+                                @if(auth()->user() && auth()->user()->role === 'Inspektur')
                                 <a class="btn btn-sm btn-warning" href="/dashboard/domisili/{{ $domisili->noSurat }}/edit">Edit</a>
                                 <form action="/dashboard/domisili/{{ $domisili->noSurat }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf 
-                                    <button class="btn btn-sm btn-danger border-0" onclick="return confirm('Kilik Oke Untuk Menghapus')">Hapus</button>
+                                    <button class="btn btn-sm btn-danger border-0" onclick="return confirm('Klik Oke Untuk Menghapus')">Hapus</button>
                                 </form>
                                 {{-- <a class="btn btn-sm btn-danger" href="#">Hapus</a> --}}
                                 <a class="btn btn-sm btn-success" href="/dashboard/domisili/{{ $domisili->noSurat }}/cetak">Cetak</a>
+                                @endif
                             </td>
-                            @endif
                         </tr>
                         @endforeach
                     </tbody>

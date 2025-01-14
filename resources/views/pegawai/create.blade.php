@@ -58,7 +58,7 @@
                             <option value="" disabled selected>Pilih Role</option>
                             <option value="Inspektur" {{ old('role') == 'Inspektur' ? 'selected' : '' }}>Inspektur</option>
                             <option value="Ketua Tim" {{ old('role') == 'Ketua Tim' ? 'selected' : '' }}>Ketua Tim</option>
-                            <option value="Pegawai" {{ old('role') == 'Pegawai' ? : '' }}>Pegawai</option>
+                            <option value="Pegawai" {{ old('role') == 'Pegawai' ? 'selected' : '' }}>Pegawai</option>
                         </select>
                     </div>
 

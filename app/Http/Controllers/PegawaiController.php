@@ -6,101 +6,69 @@ use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class PegawaiController extends Controller
 {
-    /**
-     * Tampilkan daftar pegawai
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $pegawais = Pegawai::all();
         return view('pegawai.index', compact('pegawais'));
     }
 
-    /**
-     * Tampilkan form untuk membuat data pegawai baru
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('pegawai.create');
     }
 
-    /**
-     * Simpan data pegawai yang baru dibuat dan buat akun pengguna
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username', // Pastikan username unik di tabel users
-            'email' => 'required|email|unique:users,email', // Pastikan email unik di tabel users
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|email|unique:users,email',
             'alamat' => 'nullable|string',
-            'password' => 'required|min:8', // Validasi password
+            'password' => 'required|min:8',
+            'role' => 'required|in:Inspektur,Ketua Tim,Pegawai',
         ]);
 
-        // Buat data pegawai baru di tabel `pegawais`
-        $pegawai = Pegawai::create([
-            'nama' => $request->nama,
-            'username' => $request->username,
-            'jabatan' => $request->jabatan,
-            'email' => $request->email,
-            'alamat' => $request->alamat,
-            'role' => 'pegawai'
-        ]);
+        DB::transaction(function () use ($request) {
+            $pegawai = Pegawai::create([
+                'nama' => $request->nama,
+                'username' => $request->username,
+                'jabatan' => $request->jabatan,
+                'email' => $request->email,
+                'alamat' => $request->alamat,
+                'role' => $request->role,
+            ]);
 
-        // Buat akun pengguna baru di tabel `users`
-        User::create([
-            'name' => $request->nama,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'pegawai', // Atur role default sebagai 'pegawai'
-        ]);
+            $user = User::create([
+                'name' => $request->nama,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+            ]);
+
+            $user->assignRole($request->role);
+        });
 
         return redirect()->route('pegawai.index')->with('success', 'Data pegawai dan akun berhasil ditambahkan.');
     }
 
-    /**
-     * Tampilkan data pegawai berdasarkan ID
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $pegawai = Pegawai::findOrFail($id);
         return view('pegawai.show', compact('pegawai'));
     }
 
-    /**
-     * Tampilkan form untuk mengedit data pegawai
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $pegawai = Pegawai::findOrFail($id);
         return view('pegawai.edit', compact('pegawai'));
     }
 
-    /**
-     * Perbarui data pegawai
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
 {
     // Validasi input
@@ -109,25 +77,40 @@ class PegawaiController extends Controller
         'jabatan' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:pegawais,username,' . $id,
         'email' => 'required|email|unique:pegawais,email,' . $id,
+        'role' => 'required|in:Inspektur,Ketua Tim,Pegawai',
     ]);
 
-    // Perbarui data pegawai
-    $pegawai = Pegawai::findOrFail($id);
-    $pegawai->update($request->all());
+    DB::transaction(function () use ($request, $id) {
+        $pegawai = Pegawai::findOrFail($id);
+        $pegawai->update($request->only(['nama', 'jabatan', 'username', 'email', 'alamat', 'role']));
+
+        $user = User::where('email', $pegawai->email)->first();
+        if ($user) {
+            $user->update([
+                'name' => $request->nama,
+                'username' => $request->username,
+                'role' => $request->role,
+            ]);
+
+            // Update role
+            $user->syncRoles([$request->role]);
+        }
+    });
 
     return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui.');
 }
 
-    /**
-     * Hapus data pegawai
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
-        $pegawai->delete();
+        DB::transaction(function () use ($id) {
+            $pegawai = Pegawai::findOrFail($id);
+            $user = User::where('email', $pegawai->email)->first();
+            if ($user) {
+                $user->delete();
+            }
+            $pegawai->delete();
+        });
 
         return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil dihapus.');
     }

@@ -18,13 +18,13 @@ class DashboardDomController extends Controller
 {
     $user = auth()->user();
 
-    // Tampilkan semua surat untuk Inspektur atau Ketua Tim
+    // Jika pengguna memiliki role Inspektur dan Ketua Tim, tampilkan semua surat
     $domisilis = Domisili::when($user->hasRole(['Inspektur', 'Ketua Tim']), function ($query) {
         return $query->latest();
     }, function ($query) use ($user) {
-        // Tampilkan surat milik pengguna biasa
-        return $query->where('user_id', $user->id)->latest();
-    })->paginate(8);
+        // Jika pengguna memiliki role Pegawai, hanya tampilkan surat miliknya
+        return $query->where('user_id', $user->id);
+    })->latest()->paginate(8);
 
     return view('dashboard.domisilis.index', [
         'title' => 'Domisili',

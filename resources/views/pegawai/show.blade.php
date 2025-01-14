@@ -17,31 +17,32 @@
                 <!-- Detail informasi pegawai -->
                 <div class="mb-3">
                     <label class="form-label">Nama</label>
-                    <p class="form-control">{{ $pegawai->nama }}</p>
+                    <p class="form-control bg-light">{{ $pegawai->nama }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Jabatan</label>
-                    <p class="form-control">{{ $pegawai->jabatan }}</p>
+                    <p class="form-control bg-light">{{ $pegawai->jabatan }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Username</label>
-                    <p class="form-control">{{ $pegawai->username }}</p>
+                    <p class="form-control bg-light">{{ $pegawai->username }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <p class="form-control">{{ $pegawai->email }}</p>
+                    <p class="form-control bg-light">{{ $pegawai->email }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Role</label>
-                    <p class="form-control">{{ $pegawai->role }}</p>
+                    <p class="form-control bg-light">{{ $pegawai->role }}</p>
                 </div>
 
-                <!-- Tombol kembali -->
+                <!-- Tombol aksi -->
                 <a href="{{ route('pegawai.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+                <a href="{{ route('pegawai.edit', $pegawai->id) }}" class="btn btn-primary mt-3">Edit</a>
             </div>
         </div>
     </div>
