@@ -38,6 +38,7 @@
                             <th scope="col">Nama Pegawai</th>
                             <th scope="col">Tanggal Surat</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Komentar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +59,19 @@
                                 {{-- <a class="btn btn-sm btn-danger" href="#">Hapus</a> --}}
                                 <a class="btn btn-sm btn-success" href="/dashboard/domisili/{{ $domisili->noSurat }}/cetak">Cetak</a>
                                 @endif
-                            </td>
+                                <td>
+                                    @if(auth()->user() && auth()->user()->role === 'Inspektur')
+                                    <form action="/dashboard/domisili/{{ $domisili->noSurat }}/komentar" method="post">
+                                        @csrf
+                                        <div class="mb-2">
+                                            <textarea class="form-control" name="komentar" placeholder="Tulis komentar..." rows="3">{{ old('komentar', $domisili->komentar) }}</textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-info">Kirim Komentar</button>
+                                    </form>
+                                    @else
+                                        {{ $domisili->komentar ?? 'Tidak ada komentar' }}
+                                    @endif
+                                </td>  
                         </tr>
                         @endforeach
                     </tbody>

@@ -21,4 +21,5 @@ class Domisili extends Model
     return $this->belongsTo(User::class);
 }
 
+protected $fillable = ['noSurat', 'nama', 'nik', 'tempatTglLahir', 'pekerjaan', 'alamat', 'keterangan', 'tglSurat', 'ttd', 'namaTtd', 'komentar'];
 }

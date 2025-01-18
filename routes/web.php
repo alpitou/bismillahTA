@@ -76,3 +76,8 @@ Route::prefix('dashboard/domisili/{domisili_id}')->group(function () {
     Route::put('/komentar/{id}', [KomentarController::class, 'update'])->name('komentar.update');
     Route::delete('/komentar/{id}', [KomentarController::class, 'destroy'])->name('komentar.destroy');
 });
+
+// Rute Komentar
+// Route::post('/dashboard/domisili/{noSurat}/komentar', [DomisiliController::class, 'storeKomentar'])->middleware('auth');
+// Route::post('/dashboard/domisili/{noSurat}/komentar', [DomisiliController::class, 'storeKomentar'])->name('domisili.storeKomentar');
+Route::post('/dashboard/domisili/{noSurat}/komentar', [KomentarController::class, 'store']);

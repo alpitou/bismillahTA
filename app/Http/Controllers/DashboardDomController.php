@@ -206,4 +206,27 @@ class DashboardDomController extends Controller
         abort(403, 'Anda tidak memiliki akses untuk melihat surat ini. Harap hubungi admin jika Anda memerlukan akses.');
     }
 }
+
+public function storeKomentar(Request $request, $noSurat)
+{
+    // Validasi input
+    $request->validate([
+        'komentar' => 'required|string|max:255',
+    ]);
+
+    // Cek apakah komentar ada
+    dd($request->komentar); // Debugging untuk melihat komentar yang dikirimkan
+
+    $domisili = Domisili::where('noSurat', $noSurat)->first();
+    if ($domisili) {
+        $domisili->komentar = $request->komentar;
+        $domisili->save();
+
+        return redirect()->back()->with('success', 'Komentar berhasil disimpan!');
+    }
+
+    return redirect()->back()->with('error', 'Surat tidak ditemukan!');
+}
+
+
 }
