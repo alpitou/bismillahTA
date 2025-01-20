@@ -38,6 +38,7 @@
                             <th scope="col">Nama Pegawai</th>
                             <th scope="col">Tanggal Surat</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Komentar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,19 @@
                                     <button class="btn btn-sm btn-danger border-0" onclick="return confirm('Klik Oke Untuk Menghapus')">Hapus</button>
                                 </form>
                                 <a class="btn btn-sm btn-success" href="/dashboard/usaha/{{ $usaha->noSurat }}/cetak">Cetak</a>
+                                @endif
+                            </td>
+                            <td>
+                                @if(auth()->user() && auth()->user()->role === 'Inspektur')
+                                <form action="/dashboard/usaha/{{ $usaha->noSurat }}/komentar" method="post">
+                                    @csrf
+                                    <div class="mb-2">
+                                        <textarea class="form-control" name="komentar" placeholder="Tulis komentar..." rows="3">{{ old('komentar', $usaha->komentar) }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-info">Kirim Komentar</button>
+                                </form>
+                                @else
+                                    {{ $usaha->komentar ?? 'Tidak ada komentar' }}
                                 @endif
                             </td>
                         </tr>

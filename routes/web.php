@@ -81,3 +81,4 @@ Route::prefix('dashboard/domisili/{domisili_id}')->group(function () {
 // Route::post('/dashboard/domisili/{noSurat}/komentar', [DomisiliController::class, 'storeKomentar'])->middleware('auth');
 // Route::post('/dashboard/domisili/{noSurat}/komentar', [DomisiliController::class, 'storeKomentar'])->name('domisili.storeKomentar');
 Route::post('/dashboard/domisili/{noSurat}/komentar', [KomentarController::class, 'store']);
+Route::post('/dashboard/usaha/{noSurat}/komentar', [KomentarController::class, 'storeKomentar']);

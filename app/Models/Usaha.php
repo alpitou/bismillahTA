@@ -21,4 +21,6 @@ class Usaha extends Model
     return $this->belongsTo(User::class);
 }
 
+protected $fillable = ['noSurat', 'nama','tglSurat','user_id','komentar',];
+
 }

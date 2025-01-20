@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 namespace App\Http\Controllers;
-
+use App\Models\Usaha;
 use App\Models\Domisili;
 use Illuminate\Http\Request;
 
@@ -37,4 +37,18 @@ class KomentarController extends Controller
         // Jika surat tidak ditemukan
         return redirect()->back()->with('error', 'Surat tidak ditemukan!');
     }
+
+    public function storeKomentar(Request $request, $noSurat)
+{
+    $request->validate([
+        'komentar' => 'required|string|max:255',
+    ]);
+
+    $usaha = Usaha::where('noSurat', $noSurat)->firstOrFail();
+    $usaha->komentar = $request->komentar;
+    $usaha->save();
+
+    return redirect()->back()->with('success', 'Komentar berhasil ditambahkan!');
+}
+
 }
