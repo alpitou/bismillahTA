@@ -27,12 +27,14 @@
                         <i class="bi bi-house"></i> Ket Surat Jalan</a>
                         <a href="/dashboard/usaha" class="dropdown-item {{ Request::is('dashboard/usaha*') ? 'active' : '' }}">
                         <i class="bi bi-shop-window"></i> Ket Surat Izin</a>
+                        <a href="/dashboard/sakit" class="dropdown-item {{ Request::is('dashboard/sakit*') ? 'active' : '' }}">
+                        <i class="bi bi-shop-window"></i> Ket Surat Tugas</a>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle {{ Request::is('domisili') || Request::is('usaha') ? 'active' : '' }}" data-bs-toggle="dropdown">
                     <i class="far fa-file-alt me-2"></i>Laporan</a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="/dashboard/domisili" class="dropdown-item {{ Request::is('dashboard/domisili*') ? 'active' : '' }}">
+                        <a href="/dashboard/laporan" class="dropdown-item {{ Request::is('dashboard/laporan*') ? 'active' : '' }}">
                         <i class="bi bi-house"></i> Laporan Evaluasi</a>
                         <a href="/dashboard/usaha" class="dropdown-item {{ Request::is('dashboard/usaha*') ? 'active' : '' }}">
                         <i class="bi bi-shop-window"></i> Laporan Audit</a>

@@ -72,6 +72,15 @@ class DashboardUsaController extends Controller
         return redirect('/dashboard/usaha')->with('success', 'Surat berhasil ditambahkan!');
     }
 
+    public function show(Usaha $usaha)
+    {
+        $this->authorizeAccess($usaha);
+        return view('dashboard.usahas.show', [
+            'title' => 'Usaha',
+            'usaha' => $usaha,
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

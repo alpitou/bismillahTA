@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\SakitController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -9,8 +11,7 @@ use App\Http\Controllers\DashboardDomController;
 use App\Http\Controllers\DashboardUsaController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\PegawaiController;
-
-
+use App\Http\Controllers\TugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +38,7 @@ Route::controller(RegisterController::class)->group(function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-// Route::get('/dashboard/cetak_pdf', [DashboardController::class, 'cetak_pdf'])->middleware('auth');
-Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index'); Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create'); Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store'); Route::get('/pegawai/{id}', [PegawaiController::class, 'show'])->name('pegawai.show'); Route::get('/pegawai/{id}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit'); Route::put('/pegawai/{id}', [PegawaiController::class, 'update'])->name('pegawai.update'); Route::delete('/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
 
-Route::get('/dashboard/domisili/{domisili:noSurat}/cetak', [DashboardDomController::class, 'cetak'])->middleware('auth');
-Route::get('/dashboard/usaha/{usaha:noSurat}/cetak', [DashboardUsaController::class, 'cetak'])->middleware('auth');
-Route::resource('/dashboard/domisili', DashboardDomController::class)->middleware('auth');
-Route::resource('/dashboard/usaha', DashboardUsaController::class)->middleware('auth');
-
-// Route::get('/dashboard/domisili/cetak_pdf', [DashboardDomController::class, 'cetak_pdf'])->middleware('auth');
 // Rute untuk halaman khusus Inspektur
 Route::get('/inspektur', function () {
     // Halaman khusus Inspektur
@@ -61,7 +54,7 @@ Route::get('/pegawai', function () {
     // Halaman khusus Pegawai
 })->middleware('role:Pegawai');
 
-// Rute untuk akses Inspektur
+// Rute untuk akses Inspektur dengan grup middleware
 Route::middleware(['auth', 'role:Inspektur'])->group(function () {
     Route::resource('/pegawai', PegawaiController::class); // Menambah, menghapus, memperbarui informasi pegawai
     Route::resource('/surat', SuratController::class); // Kelola berkas surat jalan dan izin
@@ -69,6 +62,27 @@ Route::middleware(['auth', 'role:Inspektur'])->group(function () {
     Route::resource('/dokumen', DokumenController::class); // Kelola dokumen pegawai
 });
 
+// Rute untuk pegawai (hapus rute duplikasi sebelumnya)
+Route::resource('/pegawai', PegawaiController::class)->middleware('auth');
+
+// Rute untuk Domisili
+Route::get('/dashboard/domisili/{domisili:noSurat}/cetak', [DashboardDomController::class, 'cetak'])->middleware('auth');
+Route::resource('/dashboard/domisili', DashboardDomController::class)->middleware('auth');
+
+// Rute untuk Usaha
+Route::get('/dashboard/usaha/{usaha:noSurat}/cetak', [DashboardUsaController::class, 'cetak'])->middleware('auth');
+Route::resource('/dashboard/usaha', DashboardUsaController::class)->middleware('auth');
+
+// Rute untuk komentar pada tugas
+Route::prefix('dashboard/tugas/{tugas_id}')->group(function () {
+    Route::get('/komentar', [KomentarController::class, 'index'])->name('tugas.komentar.index');
+    Route::post('/komentar', [KomentarController::class, 'store'])->name('tugas.komentar.store');
+    Route::get('/komentar/{id}/edit', [KomentarController::class, 'edit'])->name('tugas.komentar.edit');
+    Route::put('/komentar/{id}', [KomentarController::class, 'update'])->name('tugas.komentar.update');
+    Route::delete('/komentar/{id}', [KomentarController::class, 'destroy'])->name('tugas.komentar.destroy');
+});
+
+// Rute Komentar pada Domisili
 Route::prefix('dashboard/domisili/{domisili_id}')->group(function () {
     Route::get('/komentar', [KomentarController::class, 'index'])->name('komentar.index');
     Route::post('/komentar', [KomentarController::class, 'store'])->name('komentar.store');
@@ -78,7 +92,17 @@ Route::prefix('dashboard/domisili/{domisili_id}')->group(function () {
 });
 
 // Rute Komentar
-// Route::post('/dashboard/domisili/{noSurat}/komentar', [DomisiliController::class, 'storeKomentar'])->middleware('auth');
-// Route::post('/dashboard/domisili/{noSurat}/komentar', [DomisiliController::class, 'storeKomentar'])->name('domisili.storeKomentar');
 Route::post('/dashboard/domisili/{noSurat}/komentar', [KomentarController::class, 'store']);
 Route::post('/dashboard/usaha/{noSurat}/komentar', [KomentarController::class, 'storeKomentar']);
+
+// Rute Laporan
+Route::resource('/dashboard/laporan', LaporanController::class)->middleware('auth');
+Route::get('/dashboard/laporan/{laporan}/cetak', [LaporanController::class, 'cetak'])->middleware('auth');
+
+// Rute Sakit
+Route::resource('/dashboard/sakit', SakitController::class)->middleware('auth');
+Route::get('/dashboard/sakit/{sakit}/cetak', [SakitController::class, 'cetak'])->middleware('auth');
+
+// Rute untuk Tugas
+Route::resource('/dashboard/tugas', TugasController::class)->middleware('auth');
+Route::get('/dashboard/tugas/{tugas}/cetak', [TugasController::class, 'cetak'])->middleware('auth');
