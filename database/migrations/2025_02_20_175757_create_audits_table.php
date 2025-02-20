@@ -6,24 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up() {
-        Schema::create('laporans', function (Blueprint $table) {
+        Schema::create('audits', function (Blueprint $table) {
             $table->id();
             $table->string('kodeLaporan');
             $table->string('nomor_lhp')->unique();
             $table->string('judul');
             $table->date('tgl_pemeriksaan');
-            $table->text('ringkasan_hasil');
-            $table->text('uraian_hasil');
+            $table->text('latar_belakang');
+            $table->text('tujuan');
+            $table->text('waktu');
+            $table->text('ruang_lingkup');
+            $table->text('hasil');
+            $table->text('rekomendasi');
             $table->text('kesimpulan');
-            $table->text('saran');
-            $table->string('ttd');
-            $table->string('namaTtd');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
 
     public function down() {
-        Schema::dropIfExists('laporans');
+        Schema::dropIfExists('audits');
     }
 };

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SakitController;
@@ -98,6 +99,10 @@ Route::post('/dashboard/usaha/{noSurat}/komentar', [KomentarController::class, '
 // Rute Laporan
 Route::resource('/dashboard/laporan', LaporanController::class)->middleware('auth');
 Route::get('/dashboard/laporan/{laporan}/cetak', [LaporanController::class, 'cetak'])->middleware('auth');
+
+// Rute Audit
+Route::resource('/dashboard/audit', AuditController::class)->middleware('auth');
+Route::get('/dashboard/audit/{audit}/cetak', [AuditController::class, 'cetak'])->middleware('auth');
 
 // Rute Sakit
 Route::resource('/dashboard/sakit', SakitController::class)->middleware('auth');

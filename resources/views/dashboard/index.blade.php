@@ -36,7 +36,7 @@
                     <i class="fa bi-clipboard-check fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Laporan Pemeriksaan</p>
-                        <h6 class="mb-0">{{ $totalUsaha }}</h6>
+                        <h6 class="mb-0">{{ $totalLaporan }}</h6>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <i class="fa bi-shield-check fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Laporan Audit</p>
-                        <h6 class="mb-0">{{ $totalUsaha }}</h6>
+                        <h6 class="mb-0">{{ $totalAudit }}</h6>
                     </div>
                 </div>
             </div>

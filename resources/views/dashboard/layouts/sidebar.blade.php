@@ -36,7 +36,7 @@
                     <div class="dropdown-menu bg-transparent border-0">
                         <a href="/dashboard/laporan" class="dropdown-item {{ Request::is('dashboard/laporan*') ? 'active' : '' }}">
                         <i class="bi bi-house"></i> Laporan Evaluasi</a>
-                        <a href="/dashboard/usaha" class="dropdown-item {{ Request::is('dashboard/usaha*') ? 'active' : '' }}">
+                        <a href="/dashboard/audit" class="dropdown-item {{ Request::is('dashboard/audit*') ? 'active' : '' }}">
                         <i class="bi bi-shop-window"></i> Laporan Audit</a>
                      </div>
                             @if(auth()->user() && auth()->user()->role === 'Inspektur')

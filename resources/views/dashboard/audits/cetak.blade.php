@@ -4,8 +4,8 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <a href="/dashboard/laporan" class="btn btn-success"><i class="bi bi-arrow-left-square"></i> Kembali</a>
-                <a href="/dashboard/laporan/{{ $laporan->nomor_lhp }}/cetak" class="btn btn-secondary"><i class="bi bi-printer"></i> Cetak</a>
+                <a href="/dashboard/audit" class="btn btn-success"><i class="bi bi-arrow-left-square"></i> Kembali</a>
+                <a href="/dashboard/audit/{{ $audit->nomor_lhp }}/cetak" class="btn btn-secondary"><i class="bi bi-printer"></i> Cetak</a>
             </div>
             <div style="margin: 0 auto; width: 80%">
                 <table width="100%">
@@ -31,82 +31,83 @@
                 <table width="100%" style="margin-bottom: 5px;">
                     <tr>
                         <td style="font-size: 18px; text-align: center; font-weight: bold">
-                            <u>LAPORAN HASIL PEMERIKSAAN</u>
+                            <u>LAPORAN HASIL AUDIT</u>
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">Nomor : WAS. {{ $laporan->kodeLaporan }}/{{ $laporan->nomor_lhp }}/2025</td>
+                        <td style="text-align: center;">Nomor : WAS. {{ $audit->kodeLaporan }}/{{ $audit->nomor_lhp }}/2025</td>
                     </tr>
                 </table>
                 <br />
                 <table width="100%">
                     <tr>
-                        <td style="text-align: center;"><strong>{!! $laporan->judul !!}</strong></td>
+                        <td style="text-align: center;"><strong>{!! $audit->judul !!}</strong></td>
                     </tr>
                 </table>
                 <br />
                 <table width="100%">
                     <tr>
-                        <td><b>BAB I. Ringkasan Hasil:</b></td>
+                        <td><b>BAB I. LATAR BELAKANG</b></td>
                     </tr>
                     <tr>
-                        <td style="text-align: justify;">{!! $laporan->ringkasan_hasil !!}</td>
+                        <td style="text-align: justify;">{!! $audit->latar_belakang !!}</td>
                     </tr>
                 </table>
                 <br>
                 <table width="100%">
                     <tr>
-                        <td><b>BAB II. Uraian Hasil:</b></td>
+                        <td><b>BAB II. TUJUAN</b></td>
                     </tr>
                     <tr>
-                        <td style="text-align: justify;">{!! $laporan->uraian_hasil !!}</td>
+                        <td style="text-align: justify;">{!! $audit->tujuan !!}</td>
                     </tr>
                 </table>
                 <br>
                 <table width="100%">
                     <tr>
-                        <td><b>BAB III. Kesimpulan:</b></td>
+                        <td><b>BAB III. WAKTU PELAKSANAAN AUDIT</b></td>
                     </tr>
                     <tr>
-                        <td style="text-align: justify;">{!! $laporan->kesimpulan !!}</td>
+                        <td style="text-align: justify;">{!! $audit->waktu !!}</td>
                     </tr>
                 </table>
                 <br>
                 <table width="100%">
                     <tr>
-                        <td><b>BAB IV. Saran:</b></td>
+                        <td><b>BAB IV. RUANG LINGKUP AUDIT</b></td>
                     </tr>
                     <tr>
-                        <td style="text-align: justify;">{!! $laporan->saran !!}</td>
+                        <td style="text-align: justify;">{!! $audit->ruang_lingkup !!}</td>
                     </tr>
                 </table>
-                <br /><br />
+                <br>
                 <table width="100%">
                     <tr>
-                        <td></td>
+                        <td><b>BAB V. HASIL AUDIT</b></td>
                     </tr>
                     <tr>
-                        <td style="text-align: justify;">Demikian Laporan Hasil Pemeriksaan ini dibuat berdasarkan                 norma - norma Pemeriksaan Aparat Pengawasan Internal Pemerintah ( APIP ).</td>
+                        <td style="text-align: justify;">{!! $audit->hasil !!}</td>
                     </tr>
                 </table>
-                <br /><br />
+                <br>
                 <table width="100%">
                     <tr>
-                        <td width="60%"></td>
-                        <td style="text-align: right;">Jambi, {{ date('d M Y', strtotime($laporan->tgl_pemeriksaan)) }}</td>
+                        <td><b>BAB VI. REKOMENDASI TINDAKAN</b></td>
                     </tr>
                     <tr>
-                        <td width="60%"></td>
-                        <td style="text-align: right;">An. {{ $laporan->ttd }}</td>
+                        <td style="text-align: justify;">{!! $audit->rekomendasi !!}</td>
                     </tr>
                 </table>
-                <br /><br />
-                <table width="100%" style="margin-bottom: 100px">
+                <br />
+                <table width="100%">
                     <tr>
-                        <td width="60%"></td>
-                        <td style="text-align: right;">{{ $laporan->namaTtd }}</td>
+                        <td><b>BAB VI. PENUTUP/KESIMPULAN</b></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: justify;">{!! $audit->kesimpulan !!}</td>
                     </tr>
                 </table>
+                <br /><br /><br />
             </div>
         </div>
     </div>

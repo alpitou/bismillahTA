@@ -5,7 +5,7 @@
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Edit Surat Keterangan Usaha</h6>
+                    <h6 class="mb-4">Edit Surat Keterangan Izin</h6>
                     <form method="post" action="/dashboard/usaha/{{ $usaha->noSurat }}">
                         @method('put')
                         @csrf
@@ -28,7 +28,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Karyawan</label>
+                            <label for="nama" class="form-label">Nama Pegawai</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Pemohon" required value="{{ old('nama', $usaha->nama) }}">
                             @error('nama')
                                 <div class="invalid-feedback">
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nik" class="form-label">NIK</label>
+                            <label for="nik" class="form-label">NIP Pegawai yang meminta izin</label>
                             <input type="number" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" required value="{{ old('nik', $usaha->nik) }}">
                             @error('nik')
                                 <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="tempatTglLahir" class="form-label">Tempat, Tanggal Lahir</label>
+                            <label for="tempatTglLahir" class="form-label">Tanggal Izin</label>
                             <input type="text" class="form-control @error('tempatTglLahir') is-invalid @enderror" id="tempatTglLahir" name="tempatTglLahir" placeholder="Tempat, dd-mm-yyyy" required value="{{ old('tempatTglLahir', $usaha->tempatTglLahir) }}">
                             @error('tempatTglLahir')
                                 <div class="invalid-feedback">
@@ -55,7 +55,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                            <label for="pekerjaan" class="form-label">Jabatan Pegawai yang meminta izin</label>
                             <input type="text" class="form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" name="pekerjaan" required value="{{ old('pekerjaan', $usaha->pekerjaan) }}">
                             @error('pekerjaan')
                                 <div class="invalid-feedback">
@@ -74,7 +74,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <label for="keterangan" class="form-label">Keterangan Izin</label>
                             <input id="keterangan" type="hidden" name="keterangan" value="{{ old('keterangan', $usaha->keterangan) }}">
                             <trix-editor class="form-control @error('keterangan') is-invalid @enderror" input="keterangan" required ></trix-editor>
                             @error('keterangan')

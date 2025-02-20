@@ -36,7 +36,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nik" class="form-label">NIK</label>
+                            <label for="nik" class="form-label">NIP Pegawai yang meminta izin</label>
                             <input type="number" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" required value="{{ old('nik') }}">
                             @error('nama')
                                 <div class="invalid-feedback">
@@ -45,7 +45,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="tempatTglLahir" class="form-label">Tempat, Tanggal Lahir</label>
+                            <label for="tempatTglLahir" class="form-label">Tanggal Izin</label>
                             <input type="text" class="form-control @error('tempatTglLahir') is-invalid @enderror" id="tempatTglLahir" name="tempatTglLahir" placeholder="Tempat, dd-mm-yyyy" required value="{{ old('tempatTglLahir') }}">
                             @error('tempatTglLahir')
                                 <div class="invalid-feedback">
@@ -54,7 +54,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                            <label for="pekerjaan" class="form-label">Jabatan Pegawai yang meminta izin</label>
                             <input type="text" class="form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" name="pekerjaan" required value="{{ old('pekerjaan') }}">
                             @error('pekerjaan')
                                 <div class="invalid-feedback">
@@ -73,7 +73,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <label for="keterangan" class="form-label">Keterangan Izin</label>
                             <input id="keterangan" type="hidden" name="keterangan">
                             <trix-editor class="form-control @error('keterangan') is-invalid @enderror" input="keterangan" required value="{{ old('keterangan') }}"></trix-editor>
                             @error('keterangan')

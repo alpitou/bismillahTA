@@ -76,25 +76,32 @@ class LaporanController extends Controller
     }
 
     public function update(Request $request, Laporan $laporan)
-    {
-        $this->authorizeAccess($laporan);
+{
+    $this->authorizeAccess($laporan);
 
-        $validatedData = $request->validate([
-            'kodeLaporan' => 'required|numeric',
-            'judul' => 'required|string|max:255',
-            'tgl_pemeriksaan' => 'required|date',
-            'ringkasan_hasil' => 'required',
-            'uraian_hasil' => 'required',
-            'kesimpulan' => 'required',
-            'saran' => 'required',
-            'ttd' => 'required|max:255',
-            'namaTtd' => 'required|max:255',
-        ]);
+    $rules = [
+        'kodeLaporan' => 'required|numeric',
+        'judul' => 'string|max:255',
+        'tgl_pemeriksaan' => 'date',
+        'ringkasan_hasil' => '',
+        'uraian_hasil' => '',
+        'kesimpulan' => '',
+        'saran' => '',
+        'ttd' => 'max:255',
+        'namaTtd' => 'max:255',
+    ];
 
-        $laporan->update($validatedData);
-
-        return redirect('/dashboard/laporan')->with('success', 'Laporan berhasil diperbarui!');
+    if ($request->nomor_lhp != $laporan->nomor_lhp) {
+        $rules['nomor_lhp'] = 'required|numeric';
     }
+
+    $validatedData = $request->validate($rules);
+
+    $laporan->update($validatedData);
+
+    return redirect('/dashboard/laporan')->with('success', 'Laporan berhasil diperbarui!');
+}
+
 
     public function destroy(Laporan $laporan)
     {

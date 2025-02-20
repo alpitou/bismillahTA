@@ -8,7 +8,7 @@
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                     <i class="fa fa-chart-line fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total Laporan</p>
+                        <p class="mb-2">Total Laporan Pemeriksaan</p>
                         <h6 class="mb-0">{{ $totalLaporan }}</h6>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                 </div>
             @endif
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Daftar Laporan</h6>
+                <h6 class="mb-0">Daftar Laporan Hasil Pemeriksaan (LHP)</h6>
                 <a href="/dashboard/laporan/create" class="btn btn-primary">Tambah Laporan</a>
             </div>
             <div class="table-responsive">
@@ -48,15 +48,15 @@
                             <td>{{ $laporan->judul }}</td>
                             <td>{{ date('d M Y', strtotime($laporan->tgl_pemeriksaan)) }}</td>
                             <td>
-                                <a class="btn btn-sm btn-primary" href="/dashboard/laporan/{{ $laporan->id }}">Detail</a>
+                                <a class="btn btn-sm btn-primary" href="/dashboard/laporan/{{ $laporan->nomor_lhp }}">Detail</a>
                                 @if(auth()->user() && auth()->user()->role === 'Inspektur')
-                                <a class="btn btn-sm btn-warning" href="/dashboard/laporan/{{ $laporan->id }}/edit">Edit</a>
-                                <form action="/dashboard/laporan/{{ $laporan->id }}" method="post" class="d-inline">
+                                <a class="btn btn-sm btn-warning" href="/dashboard/laporan/{{ $laporan->nomor_lhp }}/edit">Edit</a>
+                                <form action="/dashboard/laporan/{{ $laporan->nomor_lhp }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf 
                                     <button class="btn btn-sm btn-danger border-0" onclick="return confirm('Klik Oke Untuk Menghapus')">Hapus</button>
                                 </form>
-                                <a class="btn btn-sm btn-success" href="/dashboard/laporan/{{ $laporan->id }}/cetak">Cetak</a>
+                                <a class="btn btn-sm btn-success" href="/dashboard/laporan/{{ $laporan->nomor_lhp }}/cetak">Cetak</a>
                                 @endif
                             </td>
                             <td>
