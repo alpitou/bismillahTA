@@ -94,6 +94,7 @@ Route::prefix('dashboard/domisili/{domisili_id}')->group(function () {
 // Rute Komentar
 Route::post('/dashboard/domisili/{noSurat}/komentar', [KomentarController::class, 'store']);
 Route::post('/dashboard/usaha/{noSurat}/komentar', [KomentarController::class, 'storeKomentar']);
+Route::post('/dashboard/sakits/{noSurat}/komentar', [KomentarController::class, 'storeKomentarSakit']);
 
 // Rute Laporan
 Route::resource('/dashboard/laporan', LaporanController::class)->middleware('auth');
