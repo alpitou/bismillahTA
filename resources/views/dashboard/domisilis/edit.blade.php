@@ -28,7 +28,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Warga</label>
+                            <label for="nama" class="form-label">Nama Karyawan</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Pemohon" required value="{{ old('nama', $domisili->nama) }}">
                             @error('nama')
                                 <div class="invalid-feedback">
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nik" class="form-label">NIK</label>
+                            <label for="nik" class="form-label">NIP</label>
                             <input type="number" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" required value="{{ old('nik', $domisili->nik) }}">
                             @error('nik')
                                 <div class="invalid-feedback">
@@ -46,8 +46,8 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="tempatTglLahir" class="form-label">Tempat, Tanggal Lahir</label>
-                            <input type="text" class="form-control @error('tempatTglLahir') is-invalid @enderror" id="tempatTglLahir" name="tempatTglLahir" placeholder="Tempat, dd-mm-yyyy" required value="{{ old('tempatTglLahir', $domisili->tempatTglLahir) }}">
+                            <label for="tempatTglLahir" class="form-label">Tempat Berangkat</label>
+                            <input type="text" class="form-control @error('tempatTglLahir') is-invalid @enderror" id="tempatTglLahir" name="tempatTglLahir" placeholder="" required value="{{ old('tempatTglLahir', $domisili->tempatTglLahir) }}">
                             @error('tempatTglLahir')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -55,7 +55,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                            <label for="pekerjaan" class="form-label">Pejabat Berwenang Yang Memberi Perintah</label>
                             <input type="text" class="form-control @error('pekerjaan') is-invalid @enderror" id="pekerjaan" name="pekerjaan" required value="{{ old('pekerjaan', $domisili->pekerjaan) }}">
                             @error('pekerjaan')
                                 <div class="invalid-feedback">
@@ -64,7 +64,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat</label>
+                            <label for="alamat" class="form-label">Tempat Tujuan</label>
                             <textarea class="form-control @error('alamat') is-invalid @enderror" placeholder="Tulis alamat lengkap disini..."
                                 id="alamat" name="alamat" style="height: 150px;" required value="{{ old('alamat', $domisili->alamat) }}"></textarea>
                             @error('alamat')
