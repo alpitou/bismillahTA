@@ -28,7 +28,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Warga</label>
+                            <label for="nama" class="form-label">Nama Karyawan</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Pemohon" required value="{{ old('nama', $domisili->nama) }}">
                             @error('nama')
                                 <div class="invalid-feedback">
