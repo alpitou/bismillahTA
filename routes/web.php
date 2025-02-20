@@ -103,6 +103,8 @@ Route::get('/dashboard/laporan/{laporan}/cetak', [LaporanController::class, 'cet
 // Rute Sakit
 Route::resource('/dashboard/sakit', SakitController::class)->middleware('auth');
 Route::get('/dashboard/sakit/{sakit}/cetak', [SakitController::class, 'cetak'])->middleware('auth');
+Route::get('/dashboard/sakits', [SakitController::class, 'index'])->name('sakits.index');
+
 
 // Rute untuk Tugas
 Route::resource('/dashboard/tugas', TugasController::class)->middleware('auth');
