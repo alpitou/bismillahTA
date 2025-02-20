@@ -64,64 +64,63 @@
             </table>
             <br />
             <table width="100%">
+                            <tr>
+                                <td width="5%"><b>III.</b></td>
+                                <td style="text-align: justify;">
+                                    <b>Untuk:</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="padding-top: 2px; text-align: justify;">{!! $sakit->alamat !!}</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <table width="100%">
+                            <tr>
+                                <td width="5%" valign="top"><b>IV.</b></td>
+                                <td style="text-align: justify;">
+                                    <b>Demikian untuk diketahui dan diberikan kepada Pejabat/Pegawai sebagaimana 
+                                    dimaksud di atas untuk dilaksanakan sesuai dengan ketentuan yang berlaku.</b>
+                                </td>
+                            </tr>
+                        </table>
+                        <br /><br /><br />
+                        <table width="100%">
                 <tr>
-                    <td width="5%"><b>III.</b></td>
-                    <td style="text-align: justify;">
-                        <b>Untuk:</b>
-                    </td>
+                    <td width="60%"></td>
+                    <td style="text-align: left;">Dikeluarkan di</td>
+                    <td style="text-align: left;">:</td>
+                    <td style="text-align: left;">Jambi</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td style="padding-top: 2px; text-align: justify;">{!! $sakit->alamat !!}</td>
+                    <td width="60%"></td>
+                    <td style="text-align: left;">Pada Tanggal</td>
+                    <td style="text-align: left;">:</td>
+                    <td style="text-align: left;">{{ date('d F Y', strtotime($sakit->tglSurat)) }}</td>
                 </tr>
             </table>
-            <br />
-            <table width="100%">
+
+            <table width="100%" style="margin-top: 20px;">
                 <tr>
-                    <td width="5%" valign="top"><b>IV.</b></td>
-                    <td style="text-align: justify;">
-                        <b>Demikian untuk diketahui dan diberikan kepada Pejabat/Pegawai sebagaimana 
-                        dimaksud di atas untuk dilaksanakan sesuai dengan ketentuan yang berlaku.</b>
-                    </td>
+                    <td width="60%"></td>
+                    <td style="text-align: left;">Ditandatangani secara elektronik oleh:</td>
                 </tr>
             </table>
-            <br /><br /><br />
-            <table width="100%">
-    <tr>
-        <td width="60%"></td>
-        <td style="text-align: left;">Dikeluarkan di</td>
-        <td style="text-align: left;">:</td>
-        <td style="text-align: left;">Jambi</td>
-    </tr>
-    <tr>
-        <td width="60%"></td>
-        <td style="text-align: left;">Pada Tanggal</td>
-        <td style="text-align: left;">:</td>
-        <td style="text-align: left;">{{ date('d F Y', strtotime($sakit->tglSurat)) }}</td>
-    </tr>
-</table>
 
-<table width="100%" style="margin-top: 20px;">
-    <tr>
-        <td width="60%"></td>
-        <td style="text-align: left;">Ditandatangani secara elektronik oleh:</td>
-    </tr>
-</table>
+            <table width="100%" style="margin-top: 40px;">
+                <tr>
+                    <td width="60%"></td>
+                    <td style="text-align: left;"><b>An. {{ $sakit->ttd }}</b></td>
+                </tr>
+            </table>
 
-<table width="100%" style="margin-top: 40px;">
-    <tr>
-        <td width="60%"></td>
-        <td style="text-align: left;"><b>An. {{ $sakit->ttd }}</b></td>
-    </tr>
-</table>
-
-<table width="100%" style="margin-top: 60px;">
-    <tr>
-        <td width="60%"></td>
-        <td style="text-align: left;"><b>{{ $sakit->namaTtd }}</b></td>
-    </tr>
-</table>
-
+            <table width="100%" style="margin-top: 60px;">
+                <tr>
+                    <td width="60%"></td>
+                    <td style="text-align: left;"><b>{{ $sakit->namaTtd }}</b></td>
+                </tr>
+            </table>
             <table width="100%">
                 <tr>
                     <td width="5%" valign="top"><b>IV.</b></td>

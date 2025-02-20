@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Domisili;
 use App\Models\Usaha;
+use App\Models\Sakit;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,8 +15,10 @@ class DashboardController extends Controller
             'title' => 'Dashboard',
             'domisilis' => Domisili::latest()->paginate(5),
             'usahas' => Usaha::latest()->paginate(5),
+            'sakits' => Sakit::latest()->paginate(5),
             'totalDomisili' => Domisili::count(),
             'totalUsaha' => Usaha::count(),
+            'totalSakit' => Sakit::count(),
         ]);
     }
 }

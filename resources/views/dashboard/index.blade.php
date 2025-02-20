@@ -24,16 +24,25 @@
             </div>
             <div class="col-sm-6 col-xl-5">
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <i class="fa bi-list-task fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Total Laporan Evaluasi</p>
+                        <p class="mb-2">Total Surat Tugas</p>
+                        <h6 class="mb-0">{{ $totalSakit }}</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-5">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa bi-clipboard-check fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Total Laporan Pemeriksaan</p>
                         <h6 class="mb-0">{{ $totalUsaha }}</h6>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-5">
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                    <i class="fa bi-shield-check fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Laporan Audit</p>
                         <h6 class="mb-0">{{ $totalUsaha }}</h6>
