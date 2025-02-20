@@ -21,8 +21,5 @@ class Sakit extends Model
         return $this->belongsTo(User::class);
     }
 
-    protected $fillable = [
-        'user_id', 'kodeSurat', 'noSurat', 'nama', 'nik', 'tempatTglLahir',
-        'pekerjaan', 'alamat', 'keterangan', 'tglSurat', 'ttd', 'namaTtd'
-    ];
+    protected $fillable = ['user_id', 'kodeSurat', 'noSurat', 'nama', 'nik', 'tempatTglLahir','pekerjaan', 'alamat', 'keterangan', 'tglSurat', 'ttd', 'namaTtd','komentar'];
 }

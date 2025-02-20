@@ -27,7 +27,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Pegawai</label>
+                            <label for="nama" class="form-label">Nama Pegawai yang meminta izin</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Pemohon" required value="{{ old('nama') }}">
                             @error('nama')
                                 <div class="invalid-feedback">

@@ -95,6 +95,7 @@ Route::prefix('dashboard/domisili/{domisili_id}')->group(function () {
 // Rute Komentar
 Route::post('/dashboard/domisili/{noSurat}/komentar', [KomentarController::class, 'store']);
 Route::post('/dashboard/usaha/{noSurat}/komentar', [KomentarController::class, 'storeKomentar']);
+Route::post('/dashboard/sakits/{noSurat}/komentar', [KomentarController::class, 'storeKomentarSakit']);
 
 // Rute Laporan
 Route::resource('/dashboard/laporan', LaporanController::class)->middleware('auth');
@@ -107,6 +108,8 @@ Route::get('/dashboard/audit/{audit}/cetak', [AuditController::class, 'cetak'])-
 // Rute Sakit
 Route::resource('/dashboard/sakit', SakitController::class)->middleware('auth');
 Route::get('/dashboard/sakit/{sakit}/cetak', [SakitController::class, 'cetak'])->middleware('auth');
+Route::get('/dashboard/sakits', [SakitController::class, 'index'])->name('sakits.index');
+
 
 // Rute untuk Tugas
 Route::resource('/dashboard/tugas', TugasController::class)->middleware('auth');

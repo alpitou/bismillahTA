@@ -58,6 +58,19 @@
                                 <a class="btn btn-sm btn-success" href="/dashboard/sakit/{{ $sakit->noSurat }}/cetak">Cetak</a>
                                 @endif
                             </td>
+                            <td>
+                                @if(auth()->user() && auth()->user()->role === 'Inspektur')
+                                <form action="/dashboard/sakit/{{ $sakit->noSurat }}/komentar" method="post">
+                                @csrf
+                                <div class="mb-2">
+                                    <textarea class="form-control" name="komentar" placeholder="Tulis komentar..." rows="3">{{ old('komentar', $sakit->komentar) }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-info">Kirim Komentar</button>
+                            </form>
+                                @else
+                                    {{ $sakit->komentar ?? 'Tidak ada komentar' }}
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
