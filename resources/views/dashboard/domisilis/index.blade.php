@@ -49,7 +49,7 @@
                             <td>{{ date('d M Y', strtotime($domisili->tglSurat)) }}</td>
                             <td>
                                 <a class="btn btn-sm btn-primary" href="/dashboard/domisili/{{ $domisili->noSurat }}">Detail</a>
-                                @if(auth()->user() && auth()->user()->role === 'Inspektur')
+                               
                                 <a class="btn btn-sm btn-warning" href="/dashboard/domisili/{{ $domisili->noSurat }}/edit">Edit</a>
                                 <form action="/dashboard/domisili/{{ $domisili->noSurat }}" method="post" class="d-inline">
                                     @method('delete')
@@ -58,7 +58,7 @@
                                 </form>
                                 {{-- <a class="btn btn-sm btn-danger" href="#">Hapus</a> --}}
                                 <a class="btn btn-sm btn-success" href="/dashboard/domisili/{{ $domisili->noSurat }}/cetak">Cetak</a>
-                                @endif
+                                
                                 <td>
                                     @if(auth()->user() && auth()->user()->role === 'Inspektur')
                                     <form action="/dashboard/domisili/{{ $domisili->noSurat }}/komentar" method="post">

@@ -5,7 +5,7 @@
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Edit Surat Keterangan Domisili</h6>
+                    <h6 class="mb-4">Edit Surat Keterangan Jalan</h6>
                     <form method="post" action="/dashboard/domisili/{{ $domisili->noSurat }}">
                         @method('put')
                         @csrf

@@ -34,7 +34,7 @@
             <table width="100%" style="margin-bottom: 5px;">
                 <tr>
                     <td style="font-size: 18px; text-align: center; font-weight: bold">
-                        <u>SURAT Izin</u>
+                        <u>SURAT IZIN</u>
                     </td>
                 </tr>
                 <tr>
