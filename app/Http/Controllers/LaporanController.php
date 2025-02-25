@@ -13,11 +13,16 @@ class LaporanController extends Controller
     {
         $user = auth()->user();
 
-        $laporans = Laporan::when($user->hasRole(['Inspektur', 'Ketua Tim']), function ($query) {
-            return $query->latest();
-        }, function ($query) use ($user) {
-            return $query->where('user_id', $user->id);
-        })->latest()->paginate(8);
+        $query = Laporan::query();
+
+        // jika role inspektur atau ketua tim, tampilkan semua laporan
+        if ($user->hasRole(['Inspektur', 'Ketua Tim'])) {
+            $laporans = $query->latest()->paginate(8);
+        } else {
+            // jika pegawai, hanya tampilkan laporan milik sendiri
+            $laporans = $query->where('user_id', $user->id)->latest()->paginate(8);
+        }
+
 
         return view('dashboard.laporans.index', [
             'title' => 'Laporan',
@@ -134,8 +139,13 @@ class LaporanController extends Controller
     private function authorizeAccess(Laporan $laporan)
     {
         $user = auth()->user();
-        if ($user->hasRole('Pegawai') && $laporan->user_id !== $user->id) {
-            abort(403, 'Anda tidak memiliki akses untuk laporan ini. Harap hubungi admin jika Anda memerlukan akses.');
+
+        Log::info('User Role: ' . $user->role);
+        Log::info('Laporan User ID: ' . $laporan->user_id);
+        Log::info('Current User ID: ' . $user->id);
+
+        if ($user->role === 'Pegawai' && $laporan->user_id !== $user->id) {
+        abort(403, 'Anda tidak memiliki akses untuk laporan ini.');
         }
     }
 }
