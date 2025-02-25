@@ -49,7 +49,7 @@
                             <td>{{ date('d M Y', strtotime($laporan->tgl_pemeriksaan)) }}</td>
                             <td>
                                 <a class="btn btn-sm btn-primary" href="/dashboard/laporan/{{ $laporan->nomor_lhp }}">Detail</a>
-                                @if(auth()->user() && auth()->user()->role === 'Inspektur')
+                                
                                 <a class="btn btn-sm btn-warning" href="/dashboard/laporan/{{ $laporan->nomor_lhp }}/edit">Edit</a>
                                 <form action="/dashboard/laporan/{{ $laporan->nomor_lhp }}" method="post" class="d-inline">
                                     @method('delete')
@@ -57,7 +57,7 @@
                                     <button class="btn btn-sm btn-danger border-0" onclick="return confirm('Klik Oke Untuk Menghapus')">Hapus</button>
                                 </form>
                                 <a class="btn btn-sm btn-success" href="/dashboard/laporan/{{ $laporan->nomor_lhp }}/cetak">Cetak</a>
-                                @endif
+                                
                             </td>
                             <td>
                                 @if(auth()->user() && auth()->user()->role === 'Inspektur')
