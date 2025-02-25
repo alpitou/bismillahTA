@@ -35,7 +35,7 @@
                     <i class="far fa-file-alt me-2"></i>Laporan</a>
                     <div class="dropdown-menu bg-transparent border-0">
                         <a href="/dashboard/laporan" class="dropdown-item {{ Request::is('dashboard/laporan*') ? 'active' : '' }}">
-                        <i class="bi bi-house"></i> Laporan Evaluasi</a>
+                        <i class="bi bi-house"></i> Laporan Pemeriksaan</a>
                         <a href="/dashboard/audit" class="dropdown-item {{ Request::is('dashboard/audit*') ? 'active' : '' }}">
                         <i class="bi bi-shop-window"></i> Laporan Audit</a>
                      </div>
