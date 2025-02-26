@@ -92,6 +92,23 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="tempatTglLahir" class="form-label">Pangkat Yang Menandatangani</label>
+                            <input type="text" class="form-control @error('tempatTglLahir') is-invalid @enderror" 
+                                id="tempatTglLahir" name="tempatTglLahir" required value="{{ old('tempatTglLahir', $sakit->tempatTglLahir) }}">
+                            @error('tempatTglLahir')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nik" class="form-label">NIP</label>
+                            <input type="text" class="form-control @error('nik') is-invalid @enderror" 
+                                id="nik" name="nik" required value="{{ old('nik', $sakit->nik) }}">
+                            @error('nik')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <button type="submit" class="btn btn-primary">Update Surat</button>
                     </form>
                 </div>

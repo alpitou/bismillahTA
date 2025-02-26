@@ -80,16 +80,7 @@
                         <td style="text-align: justify;">{!! $laporan->saran !!}</td>
                     </tr>
                 </table>
-                <br /><br />
-                <table width="100%">
-                    <tr>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: justify;">Demikian Laporan Hasil Pemeriksaan ini dibuat berdasarkan                 norma - norma Pemeriksaan Aparat Pengawasan Internal Pemerintah ( APIP ).</td>
-                    </tr>
-                </table>
-                <br /><br />
+                <br /><br /><br /><br />
                 <table width="100%">
                     <tr>
                         <td width="60%"></td>

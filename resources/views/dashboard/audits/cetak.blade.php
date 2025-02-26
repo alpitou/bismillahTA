@@ -1,41 +1,42 @@
-@extends('dashboard.layouts.main')
-
-@section('container')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Audit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <a href="/dashboard/audit" class="btn btn-success"><i class="bi bi-arrow-left-square"></i> Kembali</a>
-                <a href="/dashboard/audit/{{ $audit->nomor_lhp }}/cetak" class="btn btn-secondary"><i class="bi bi-printer"></i> Cetak</a>
-            </div>
-            <div style="margin: 0 auto; width: 80%">
-                <table width="100%">
-                    <tr>
-                        <td><img src="{{ asset('dashmin/img/image.png') }}" width="100" height="110" /></td>
-                        <td style="font-family: 'Times New Roman', Times, serif; font-size: 13px; text-align: center;">
-                            <div style="text-align: center;">
-                                <font size="5">PEMERINTAH KOTA JAMBI</font><br />
-                                <font size="6"><b>INSPEKTORAT</b></font><br />
-                                <font size="3">Jl. Kapten A. Zaidi Saleh, Kota Baru, Jambi 36128, Telepon: (0741) 41239</font><br />
-                                <font size="3">Laman: inspektorat.jambikota.go.id, Pos-el: inspektorat@jambikota.go.id</font>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <hr style="border: 2px solid black; margin: 2px 0;">
-                            <hr style="border: 2px solid black; margin: 2px 0;">
-                        </td>
-                    </tr>
-                </table>
-                <br />
-                <table width="100%" style="margin-bottom: 5px;">
+            <table width="100%">
+                <tr>
+                    <td><img src="inspektorat.png" width="100" height="110" /></td>
+                    <td style="font-family: 'Times New Roman', Times, serif; font-size: 13px; text-align: center;">
+                        <div>
+                            <font size="5">PEMERINTAH KOTA JAMBI</font><br />
+                            <font size="6"><b>INSPEKTORAT</b></font><br />
+                            <font size="3">Jl. Kapten A. Zaidi Saleh, Kota Baru, Jambi 36128, Telepon: (0741) 41239</font><br />
+                            <font size="3">Laman: inspektorat.jambikota.go.id, Pos-el: inspektorat@jambikota.go.id</font>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr style="border: 2px solid black; margin: 2px 0;">
+                        <hr style="border: 2px solid black; margin: 2px 0;">
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <table width="100%" style="margin-bottom: 5px;">
                     <tr>
                         <td style="font-size: 18px; text-align: center; font-weight: bold">
                             <u>LAPORAN HASIL AUDIT</u>
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">Nomor : WAS. {{ $audit->kodeLaporan }}/{{ $audit->nomor_lhp }}/2025</td>
+                        <td style="text-align: center;">Nomor : {{ $audit->kodeLaporan }}/{{ $audit->nomor_lhp }}/2025</td>
                     </tr>
                 </table>
                 <br />
@@ -108,7 +109,7 @@
                     </tr>
                 </table>
                 <br /><br /><br />
-            </div>
         </div>
     </div>
-@endsection
+</body>
+</html>

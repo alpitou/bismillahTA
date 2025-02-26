@@ -69,9 +69,23 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="namaTtd" class="form-label">Nama Yang Menandatangani</label>
+                            <label for="namaTtd" class="form-label">Nama yang Menandatangani</label>
                             <input type="text" class="form-control @error('namaTtd') is-invalid @enderror" id="namaTtd" name="namaTtd" required value="{{ old('namaTtd') }}">
                             @error('namaTtd')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tempatTglLahir" class="form-label">Pangkat yang Menandatangani</label>
+                            <input type="text" class="form-control @error('tempatTglLahir') is-invalid @enderror" id="tempatTglLahir" name="tempatTglLahir" required value="{{ old('tempatTglLahir') }}">
+                            @error('tempatTglLahir')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="nik" class="form-label">NIP</label>
+                            <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" required value="{{ old('nik') }}">
+                            @error('nik')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

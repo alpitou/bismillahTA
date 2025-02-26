@@ -35,7 +35,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">Nomor : WAS. {{ $audit->kodeLaporan }}/{{ $audit->nomor_lhp }}/2025</td>
+                        <td style="text-align: center;">Nomor : {{ $audit->kodeLaporan }}/{{ $audit->nomor_lhp }}/2025</td>
                     </tr>
                 </table>
                 <br />
