@@ -58,9 +58,9 @@ Route::get('/pegawai', function () {
 // Rute untuk akses Inspektur dengan grup middleware
 Route::middleware(['auth', 'role:Inspektur'])->group(function () {
     Route::resource('/pegawai', PegawaiController::class); // Menambah, menghapus, memperbarui informasi pegawai
-    Route::resource('/surat', SuratController::class); // Kelola berkas surat jalan dan izin
+    // Route::resource('/surat', SuratController::class); // Kelola berkas surat jalan dan izin
     Route::resource('/komentar', KomentarController::class); // Kelola komentar pada laporan
-    Route::resource('/dokumen', DokumenController::class); // Kelola dokumen pegawai
+    // Route::resource('/dokumen', DokumenController::class); // Kelola dokumen pegawai
 });
 
 // Rute untuk pegawai (hapus rute duplikasi sebelumnya)
@@ -100,6 +100,7 @@ Route::post('/dashboard/sakits/{noSurat}/komentar', [KomentarController::class, 
 // Rute Laporan
 Route::resource('/dashboard/laporan', LaporanController::class)->middleware('auth');
 Route::get('/dashboard/laporan/{laporan}/cetak', [LaporanController::class, 'cetak'])->middleware('auth');
+Route::get('/dashboard/laporan/{laporan}', [LaporanController::class, 'show'])->name('laporan.show');
 
 // Rute Audit
 Route::resource('/dashboard/audit', AuditController::class)->middleware('auth');

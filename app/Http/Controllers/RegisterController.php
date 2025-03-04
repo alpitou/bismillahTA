@@ -24,8 +24,11 @@ class RegisterController extends Controller
             'password' => 'required|min:5|max:255',
         ]);
 
-        // eksripsi password dengan hash laravel
+        // enkripsi password dengan hash laravel
         $validatedData['password'] = Hash::make($validatedData['password']);
+
+        // default role
+        $validatedData['role'] = 'Pegawai';
 
         User::create($validatedData);
 
