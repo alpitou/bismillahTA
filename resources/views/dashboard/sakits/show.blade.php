@@ -119,10 +119,18 @@
                     <td style="text-align: left;">An. {{ $sakit->ttd }}</td>
                 </tr>
             </table>
-            <table width="100%" style="margin-bottom: 100px;">
+            <table width="100%" style="margin-bottom: 200px;">
                 <tr>
                     <td width="65%"></td>
-                    <td style="text-align: left;">{{ $sakit->namaTtd }}</td>
+                    <td style="text-align: left;"><b>{{ $sakit->namaTtd }}</b></td>
+                </tr>
+                <tr>
+                    <td width="65%"></td>
+                    <td style="text-align: left;">{{ $sakit->tempatTglLahir }}</td>
+                </tr>
+                <tr>
+                    <td width="65%"></td>
+                    <td style="text-align: left;">NIP. {{ $sakit->nik }}</td>
                 </tr>
             </table>
             <table width="100%">

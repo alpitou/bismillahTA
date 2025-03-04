@@ -148,24 +148,24 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Daftar Laporan Evaluasi Terbaru</h6>
-                <a href="/dashboard/usaha">Lihat Semua</a>
+                <h6 class="mb-0">Daftar Laporan Pemeriksaan Terbaru</h6>
+                <a href="/dashboard/laporan">Lihat Semua</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-dark">
-                            <th scope="col">No Surat</th>
-                            <th scope="col">Nama Pegawai</th>
-                            <th scope="col">Tanggal Surat</th>
+                            <th scope="col">Kode Laporan</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Tanggal Laporan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($usahas as $usaha)
+                        @foreach ($laporans as $laporan)
                         <tr>
-                            <td>{{ $usaha->noSurat }}</td>
-                            <td>{{ $usaha->nama }}</td>
-                            <td>{{ date('d M Y', strtotime($usaha->tglSurat)) }}</td>
+                            <td>{{ $laporan->kodeLaporan }}</td>
+                            <td>{{ $laporan->judul }}</td>
+                            <td>{{ date('d M Y', strtotime($laporan->tgl_pemeriksaan)) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -179,23 +179,23 @@
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">Daftar Laporan Audit Terbaru</h6>
-                <a href="/dashboard/usaha">Lihat Semua</a>
+                <a href="/dashboard/audit">Lihat Semua</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-dark">
-                            <th scope="col">No Surat</th>
-                            <th scope="col">Nama Pegawai</th>
-                            <th scope="col">Tanggal Surat</th>
+                            <th scope="col">Kode Laporan</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Tanggal Laporan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($usahas as $usaha)
+                        @foreach ($audits as $audit)
                         <tr>
-                            <td>{{ $usaha->noSurat }}</td>
-                            <td>{{ $usaha->nama }}</td>
-                            <td>{{ date('d M Y', strtotime($usaha->tglSurat)) }}</td>
+                            <td>{{ $audit->kodeLaporan }}</td>
+                            <td>{{ $audit->judul }}</td>
+                            <td>{{ date('d M Y', strtotime($audit->tgl_pemeriksaan)) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
